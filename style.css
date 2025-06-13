@@ -76,3 +76,10 @@ body {
   background-image: url('jager.png');
   display: none;
 }
+
+#scoreboard {
+  margin: 10px auto;
+  font-size: 18px;
+  font-weight: bold;
+  color: #222;
+}

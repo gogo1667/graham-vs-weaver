@@ -5,12 +5,17 @@ let message = document.getElementById("message");
 
 let grahamX = 0, grahamY = 0;
 let weaverX = 240, weaverY = 240;
-
 let jagerX = 330, jagerY = 330;
+
 let jagerVisible = false;
 let weaverPaused = false;
+let kissCount = 0;
+let shotCount = 0;
+let gameOver = false;
 
 function move(direction) {
+  if (gameOver) return;
+
   switch(direction) {
     case 'up':
       if (grahamY > 0) grahamY -= 30;
@@ -22,7 +27,7 @@ function move(direction) {
       if (grahamX > 0) grahamX -= 30;
       break;
     case 'right':
-      if (grahamX < 3300) grahamX += 30;
+      if (grahamX < 330) grahamX += 30;
       break;
   }
   updatePositions();
@@ -41,6 +46,9 @@ function updatePositions() {
     weaverPaused = true;
     showMessage("🍾 Shot time!!!");
 
+    shotCount++;
+    updateScoreboard();
+
     setTimeout(() => {
       weaverPaused = false;
       showMessage("");
@@ -53,7 +61,7 @@ function updatePositions() {
 }
 
 function autoMoveWeaver() {
-  if (weaverPaused) return;
+  if (weaverPaused || gameOver) return;
 
   if (weaverX > grahamX) weaverX -= 30;
   else if (weaverX < grahamX) weaverX += 30;
@@ -64,8 +72,14 @@ function autoMoveWeaver() {
   updatePositions();
 
   if (grahamX === weaverX && grahamY === weaverY) {
+    gameOver = true;
+    kissCount++;
+    updateScoreboard();
     showMessage("💋 Weaver kisses Graham!");
-    setTimeout(resetGame, 1000);
+    setTimeout(() => {
+      resetGame();
+      gameOver = false;
+    }, 1000);
   }
 }
 
@@ -75,7 +89,7 @@ function resetGame() {
   weaverPaused = false;
   updatePositions();
   spawnJager();
-  showMessage(""); // Clear any lingering messages
+  showMessage(""); // Clear message
 }
 
 function spawnJager() {
@@ -90,6 +104,10 @@ function showMessage(text) {
   message.style.display = text ? "block" : "none";
 }
 
-// Start game loop
+function updateScoreboard() {
+  document.getElementById("kisses").innerText = kissCount;
+  document.getElementById("shots").innerText = shotCount;
+}
+
 setInterval(autoMoveWeaver, 500);
 resetGame();
