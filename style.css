@@ -58,3 +58,8 @@ body {
   border-radius: 10px;
 }
 
+  /* Prevent iOS double-tap zoom & remove tap highlight */
+  button {
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
