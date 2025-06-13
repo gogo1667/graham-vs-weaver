@@ -1,0 +1,38 @@
+body {
+  font-family: sans-serif;
+  text-align: center;
+  background-color: #f0f0f0;
+}
+
+#arena {
+  width: 400px;
+  height: 400px;
+  border: 2px solid black;
+  margin: 20px auto;
+  position: relative; /* Important! */
+  overflow: hidden;   /* Prevents heads from spilling out */
+  background-color: white;
+}
+
+
+.head {
+  width: 64px;
+  height: 64px;
+  position: absolute;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+#graham {
+  background-image: url('graham.png');
+}
+
+#weaver {
+  background-image: url('weaver.png');
+}
+
+#controls button {
+  font-size: 24px;
+  margin: 5px;
+}
