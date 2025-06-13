@@ -63,3 +63,16 @@ body {
     -webkit-tap-highlight-color: transparent;
     touch-action: manipulation;
   }
+
+  .item {
+  width: 40px;
+  height: 40px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  position: absolute;
+}
+
+#jager {
+  background-image: url('jager.png');
+  display: none;
+}
