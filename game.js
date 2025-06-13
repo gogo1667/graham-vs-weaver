@@ -22,6 +22,15 @@ function move(direction) {
   updatePositions();
 }
 
+function showMessage(text) {
+  const message = document.getElementById("message");
+  message.innerText = text;
+  message.style.display = "block";
+  setTimeout(() => {
+    message.style.display = "none";
+  }, 1000);
+}
+
 
 function updatePositions() {
   graham.style.left = grahamX + "px";
@@ -41,10 +50,12 @@ function autoMoveWeaver() {
 
   // Collision detection
   if (grahamX === weaverX && grahamY === weaverY) {
-    alert("Weaver got you!");
-    resetGame();
+    showMessage("💋 Weaver kisses Graham!");
+    setTimeout(resetGame, 1000);
   }
 }
+
+
 
 function resetGame() {
   grahamX = 0; grahamY = 0;
