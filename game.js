@@ -79,7 +79,7 @@ function autoMoveWeaver() {
     setTimeout(() => {
       resetGame();
       gameOver = false;
-    }, 1000);
+    }, 2000);
   }
 }
 
